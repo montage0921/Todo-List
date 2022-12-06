@@ -206,13 +206,20 @@ header {
   width: 99%;
   height: 40px;
   display: grid;
-  grid-template-columns: auto 1fr 1fr 1fr auto auto;
+  grid-template-columns: auto 1fr 1fr auto 1fr auto auto;
   border-bottom: 1px solid lightgray;
+  border-left: 15px solid red;
+  border-radius: 15px;
 }
 
 .todo > * {
   align-self: center;
   justify-self: center;
+  cursor: pointer;
+}
+
+.priority {
+  color: red;
 }
 
 .todo input {
@@ -238,4 +245,5 @@ header {
 
 .delete-todo {
   content: url(/src/assets/delete.svg);
+  margin-right: 20px;
 }
