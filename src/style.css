@@ -141,10 +141,12 @@ header {
   gap: 15px;
   background-color: #fafafa;
   cursor: pointer;
+  margin-bottom: 5px;
 }
 
 .project-delete {
   content: url(/src/assets/delete.svg);
+
   /* display: none; */
 }
 

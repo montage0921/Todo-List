@@ -13,6 +13,8 @@ const projectInput = document.querySelector(`#project-form input`);
 
 const hideProjectFormBtn = document.querySelector(`#project-cancel`);
 
+export const projectContainer = document.querySelector(`.project-section`);
+
 ////////////////////////////
 const eventController = (function () {
   addProjectBtn.addEventListener(`click`, function () {
@@ -25,6 +27,11 @@ const eventController = (function () {
     const projectName = projectInput.value;
 
     dataProcessor.addProject(projectName);
+
+    renderProject.renderProjectList();
+
+    projectInput.value = ``;
+    renderProject.hideProjectForm();
   });
 
   hideProjectFormBtn.addEventListener(`click`, function () {
