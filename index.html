@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo-List</title>
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
   </head>
   <body>
     <header>
@@ -35,15 +35,19 @@
         </div>
 
         <!-- Add According to Event -->
-        <div id="project-form" class="">
-          <input type="text" name="" id="" />
+
+        <form id="project-form" action="" class="hidden">
+          <input type="text" name="" id="" required />
+
           <button id="project-check">
             <img src="" alt="" />
           </button>
-          <button id="project-cancel">
+
+          <button type="button" id="project-cancel">
             <img src="" alt="" />
           </button>
-        </div>
+        </form>
+
         <!-- ------------------------ -->
 
         <!-- Add According to Event -->
@@ -62,7 +66,7 @@
       <img id="add-todo" src="" alt="" />
 
       <!-- Add According to Event -->
-      <form class="todo-form">
+      <form class="todo-form hidden">
         <div class="inputDiv">
           <label for="todo-name">Name</label>
           <input id="todo-name" type="text" />
@@ -86,6 +90,7 @@
         </select>
 
         <input type="submit" value="Add Todo" />
+        <input type="button" value="Cancel" />
       </form>
       <!-- ------------------------- -->
 
