@@ -71,10 +71,11 @@
       <img id="add-todo" src="" alt="" />
 
       <!-- Add According to Event -->
-      <form class="todo-form hidden">
+      <form class="todo-form">
         <div class="inputDiv">
           <label for="todo-name">Name: </label>
           <input id="todo-name" type="text" required />
+          <div class="errorMsg-Todo"></div>
         </div>
 
         <div class="inputDiv">
@@ -83,8 +84,10 @@
         </div>
 
         <div class="inputDiv">
+          <div class="errorMsg-Date"></div>
           <label for="todo-date">Date: </label>
           <input id="todo-date" type="date" required />
+         
         </div>
 
         <select name="priority" id="priority">
@@ -116,6 +119,7 @@
             >
           </span>
           <span class="priority">Important</span>
+          <span class="project-belongTo">Project 1</span>
           <span class="date">2022/12/6</span>
           <img src="" alt="" class="edit-todo" />
           <img src="" alt="" class="delete-todo" />
@@ -125,13 +129,19 @@
           <input type="radio" name="" id="" />
           <span class="title"><b>Study Odin Project</b> </span>
 
-          <span class="discription"><i>"do the ToDo List project"</i> </span>
+          <span class="discription"
+            ><i
+              >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Officiis, culpa.</i
+            >
+          </span>
           <span class="priority">Important</span>
+          <span class="project-belongTo">Project 1</span>
           <span class="date">2022/12/6</span>
           <img src="" alt="" class="edit-todo" />
           <img src="" alt="" class="delete-todo" />
         </div>
-      </div>
+       
 
       <!-- ------------------------- -->
     </div>
