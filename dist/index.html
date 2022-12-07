@@ -55,12 +55,12 @@
 
         <div class="projectContainer">
           <!-- Add According to Event -->
-          <div class="project">
+          <!-- <div class="project">
             <img class="project-icon" src="" alt="" />
             <div class="project-name">Project 1</div>
 
             <img class="project-delete" src="" alt="" />
-          </div>
+          </div> -->
           <!-- ------------------------ -->
         </div>
       </section>
@@ -73,29 +73,29 @@
       <!-- Add According to Event -->
       <form class="todo-form hidden">
         <div class="inputDiv">
-          <label for="todo-name">Name</label>
-          <input id="todo-name" type="text" />
+          <label for="todo-name">Name: </label>
+          <input id="todo-name" type="text" required />
         </div>
 
         <div class="inputDiv">
-          <label for="todo-description">Description</label>
-          <input id="todo-description" type="text" />
+          <label for="todo-note">Note: </label>
+          <input id="todo-note" type="text" required maxlength="70" />
         </div>
 
         <div class="inputDiv">
-          <label for="todo-date">Date</label>
-          <input id="todo-date" type="date" />
+          <label for="todo-date">Date: </label>
+          <input id="todo-date" type="date" required />
         </div>
 
-        <select name="priority" id="">
+        <select name="priority" id="priority">
           <optgroup label="Priority"></optgroup>
           <option value="Important">Important</option>
           <option value="Normal">Normal</option>
           <option value="Easy">Casual</option>
         </select>
 
-        <input type="submit" value="Add Todo" />
-        <input type="button" value="Cancel" />
+        <input type="submit" value="Add Todo" class="button button-submit" />
+        <input type="button" value="Cancel" class="button button-cancel" />
       </form>
       <!-- ------------------------- -->
 
@@ -104,16 +104,35 @@
       <!-- ------------------------- -->
 
       <!-- Add According to Event -->
-      <div class="todo">
-        <input type="radio" name="" id="" />
-        <span class="title"><b>Study Odin Project</b> </span>
+      <div class="todoContainer">
+        <div class="todo">
+          <input type="radio" name="" id="" />
+          <span class="title"><b>Study Odin Project</b> </span>
 
-        <span class="discription"><i>"do the ToDo List project"</i> </span>
-        <span class="priority">Important</span>
-        <span class="date">2022/12/6</span>
-        <img src="" alt="" class="edit-todo" />
-        <img src="" alt="" class="delete-todo" />
+          <span class="discription"
+            ><i
+              >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Officiis, culpa.</i
+            >
+          </span>
+          <span class="priority">Important</span>
+          <span class="date">2022/12/6</span>
+          <img src="" alt="" class="edit-todo" />
+          <img src="" alt="" class="delete-todo" />
+        </div>
+
+        <div class="todo">
+          <input type="radio" name="" id="" />
+          <span class="title"><b>Study Odin Project</b> </span>
+
+          <span class="discription"><i>"do the ToDo List project"</i> </span>
+          <span class="priority">Important</span>
+          <span class="date">2022/12/6</span>
+          <img src="" alt="" class="edit-todo" />
+          <img src="" alt="" class="delete-todo" />
+        </div>
       </div>
+
       <!-- ------------------------- -->
     </div>
   </body>

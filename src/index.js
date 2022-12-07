@@ -15,10 +15,22 @@ const hideProjectFormBtn = document.querySelector(`#project-cancel`);
 
 export const projectContainer = document.querySelector(`.projectContainer`);
 
-const projectBtns = document.querySelectorAll(`.project`);
+const addTodoBtn = document.querySelector(`#add-todo`);
+
+export const todoForm = document.querySelector(`.todo-form`);
+
+const hideTodoFormBtn = document.querySelector(`.button-cancel`);
+
+const nameInput = document.querySelector(`#todo-name`);
+const noteInput = document.querySelector(`#todo-note`);
+const dateInput = document.querySelector(`#todo-date`);
+const priorityInput = document.querySelector(`#priority`);
+
+export const inputArr = [nameInput, noteInput, dateInput, priorityInput];
 
 ////////////////////////////
 const eventController = (function () {
+  /////////Project//////////////
   addProjectBtn.addEventListener(`click`, function () {
     renderProject.showProjectForm();
   });
@@ -53,5 +65,40 @@ const eventController = (function () {
       dataProcessor.removeProject(project);
       renderProject.renderProjectList();
     }
+  });
+
+  //////// NOT FINISHED///////////
+  projectContainer.addEventListener(`click`, function (e) {
+    if (e.target.className !== `project-delete`) {
+      const project =
+        e.target.parentNode.querySelector(`.project-name`).textContent;
+
+      dataProcessor.getTodo(project);
+      renderProject.renderTodoList(project);
+    }
+  });
+
+  //////////Todo Event//////////////
+  addTodoBtn.addEventListener(`click`, function () {
+    renderProject.showTodoForm();
+  });
+
+  hideTodoFormBtn.addEventListener(`click`, function () {
+    inputArr.forEach((input) => (input.value = ``));
+
+    renderProject.hideTodoForm();
+  });
+
+  todoForm.addEventListener(`submit`, function (e) {
+    e.preventDefault();
+
+    const projectBelongTo = e.target.nextElementSibling.textContent;
+
+    const name = nameInput.value;
+    const note = noteInput.value;
+    const date = dateInput.value;
+    const priority = priorityInput.value;
+
+    dataProcessor.createTodo(projectBelongTo, name, note, date, priority);
   });
 })();

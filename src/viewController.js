@@ -1,11 +1,14 @@
 import { projectForm } from ".";
+import { todoForm } from ".";
+import { inputArr } from ".";
 import { projectContainer } from ".";
 import { dataProcessor } from "./dataProcessor";
 
 export const renderProject = (function () {
   const errorMsg = `The name is Repeated!`;
-
   const projectValidation = document.querySelector(`.errorMsg-Project`);
+
+  const inboxIndicator = document.querySelector(`.whichProjectItis`);
 
   function showProjectForm() {
     projectForm.classList.remove(`hidden`);
@@ -50,10 +53,25 @@ export const renderProject = (function () {
     return isRepeated;
   }
 
+  function renderTodoList(project) {
+    inboxIndicator.textContent = project;
+  }
+
+  function showTodoForm() {
+    todoForm.classList.remove(`hidden`);
+  }
+
+  function hideTodoForm() {
+    todoForm.classList.add(`hidden`);
+  }
+
   return {
     showProjectForm,
     hideProjectForm,
     renderProjectList,
     renderValidationMsg,
+    renderTodoList,
+    showTodoForm,
+    hideTodoForm,
   };
 })();

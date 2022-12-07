@@ -209,6 +209,13 @@ header {
   border-bottom: 1px solid lightgray;
 }
 
+.todoContainer {
+  width: 99%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .todo {
   width: 99%;
   height: 40px;
