@@ -18,5 +18,9 @@ export const dataProcessor = (function () {
     return propNameArr;
   }
 
-  return { addProject, getPropertyName };
+  function removeProject(project) {
+    delete projectObj[project];
+  }
+
+  return { addProject, getPropertyName, removeProject };
 })();

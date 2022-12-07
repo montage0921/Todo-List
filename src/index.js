@@ -13,7 +13,7 @@ const projectInput = document.querySelector(`#project-form input`);
 
 const hideProjectFormBtn = document.querySelector(`#project-cancel`);
 
-export const projectContainer = document.querySelector(`.project-section`);
+export const projectContainer = document.querySelector(`.projectContainer`);
 
 const projectBtns = document.querySelectorAll(`.project`);
 
@@ -45,7 +45,13 @@ const eventController = (function () {
     renderProject.hideProjectForm();
   });
 
-  //   projectContainer.addEventListener(`click`, function (e) {
-  //     console.log(e.target);
-  //   });
+  projectContainer.addEventListener(`click`, function (e) {
+    if (e.target.className === `project-delete`) {
+      const project =
+        e.target.parentNode.querySelector(`.project-name`).textContent;
+
+      dataProcessor.removeProject(project);
+      renderProject.renderProjectList();
+    }
+  });
 })();

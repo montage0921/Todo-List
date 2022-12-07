@@ -16,23 +16,26 @@ export const renderProject = (function () {
   }
 
   function renderProjectList() {
-    let textHTML = ``;
+    projectContainer.innerHTML = ``;
+    let textHTML;
 
     const projectNameArr = dataProcessor.getPropertyName();
 
-    projectNameArr.forEach((name) => {
-      textHTML = ``;
+    if (projectNameArr.length === 0) textHTML = ``;
+    else {
+      projectNameArr.forEach((name) => {
+        textHTML = ``;
 
-      textHTML += `
-      <div class="project">
-      <img class="project-icon" src="" alt="" />
-      <div class="project-name">${name}</div>
-      <img class="project-delete" src="" alt="" />
-    </div>
-        `;
-    });
-
-    projectContainer.insertAdjacentHTML(`beforeend`, textHTML);
+        textHTML += `
+            <div class="project">
+            <img class="project-icon" src="" alt="" />
+            <div class="project-name">${name}</div>
+            <img class="project-delete" src="" alt="" />
+          </div>
+              `;
+        projectContainer.insertAdjacentHTML(`beforeend`, textHTML);
+      });
+    }
   }
 
   function renderValidationMsg(name) {
