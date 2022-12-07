@@ -101,7 +101,9 @@ header {
   height: 20px;
 }
 
-.errorMsg-Project {
+.errorMsg-Project,
+.errorMsg-Todo,
+.errorMsg-Date {
   color: red;
   font-size: 0.85em;
 }
@@ -220,7 +222,7 @@ header {
   width: 99%;
   height: 40px;
   display: grid;
-  grid-template-columns: auto 1fr 1fr auto 1fr auto auto;
+  grid-template-columns: auto 1fr 1.5fr auto 1fr 1fr auto auto;
   border-bottom: 1px solid lightgray;
   border-left: 15px solid red;
   border-radius: 15px;

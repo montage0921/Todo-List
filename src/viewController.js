@@ -3,12 +3,17 @@ import { todoForm } from ".";
 import { inputArr } from ".";
 import { projectContainer } from ".";
 import { dataProcessor } from "./dataProcessor";
+import { isToday, isFuture } from "date-fns";
 
 export const renderProject = (function () {
   const errorMsg = `The name is Repeated!`;
+  const errorMsgDate = `Start date cannot be in the past`;
   const projectValidation = document.querySelector(`.errorMsg-Project`);
 
   const inboxIndicator = document.querySelector(`.whichProjectItis`);
+
+  const todoValidation = document.querySelector(`.errorMsg-Todo`);
+  const dateValidation = document.querySelector(`.errorMsg-Date`);
 
   function showProjectForm() {
     projectForm.classList.remove(`hidden`);
@@ -41,7 +46,7 @@ export const renderProject = (function () {
     }
   }
 
-  function renderValidationMsg(name) {
+  function validateProjectMsg(name) {
     const projectNameArr = dataProcessor.getPropertyName();
 
     let isRepeated = projectNameArr.some((projectName) => projectName === name);
@@ -65,13 +70,36 @@ export const renderProject = (function () {
     todoForm.classList.add(`hidden`);
   }
 
+  function isTodayOrFuture(date) {
+    const isoDate = new Date(date.replace(/-/g, "/"));
+
+    const todayTodo = isToday(isoDate);
+    const futureTodo = isFuture(isoDate);
+
+    return { todayTodo, futureTodo };
+  }
+
+  function validateTodoMsg(date) {
+    const obj = isTodayOrFuture(date);
+    console.log(obj);
+    let isGood;
+
+    if (obj.todayTodo === false && obj.futureTodo === false) {
+      dateValidation.textContent = errorMsgDate;
+      isGood = false;
+    }
+
+    return isGood;
+  }
+
   return {
     showProjectForm,
     hideProjectForm,
     renderProjectList,
-    renderValidationMsg,
+    validateProjectMsg,
     renderTodoList,
     showTodoForm,
     hideTodoForm,
+    validateTodoMsg,
   };
 })();

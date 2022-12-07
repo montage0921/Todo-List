@@ -4,6 +4,7 @@ import "./style.css";
 // import
 import { renderProject } from "./viewController";
 import { dataProcessor } from "./dataProcessor";
+import isToday from "date-fns/isToday";
 
 //QuerySelector
 const addProjectBtn = document.querySelector("#add-project");
@@ -40,7 +41,7 @@ const eventController = (function () {
 
     const projectName = projectInput.value;
 
-    const isRepeated = renderProject.renderValidationMsg(projectName);
+    const isRepeated = renderProject.validateProjectMsg(projectName);
 
     if (isRepeated) return;
 
@@ -99,6 +100,7 @@ const eventController = (function () {
     const date = dateInput.value;
     const priority = priorityInput.value;
 
-    dataProcessor.createTodo(projectBelongTo, name, note, date, priority);
+    const isGood = renderProject.validateTodoMsg(date);
+    if (isGood === false) return;
   });
 })();
