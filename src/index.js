@@ -74,7 +74,6 @@ const eventController = (function () {
       const project =
         e.target.parentNode.querySelector(`.project-name`).textContent;
 
-      dataProcessor.getTodo(project);
       renderProject.renderTodoList(project);
     }
   });
@@ -99,8 +98,13 @@ const eventController = (function () {
     const note = noteInput.value;
     const date = dateInput.value;
     const priority = priorityInput.value;
+    console.log(priority);
 
     const isGood = renderProject.validateTodoMsg(date);
     if (isGood === false) return;
+
+    dataProcessor.addTodo(name, note, date, priority, projectBelongTo);
+
+    renderProject.hideTodoForm();
   });
 })();

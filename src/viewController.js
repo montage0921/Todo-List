@@ -81,12 +81,15 @@ export const renderProject = (function () {
 
   function validateTodoMsg(date) {
     const obj = isTodayOrFuture(date);
-    console.log(obj);
+
     let isGood;
 
     if (obj.todayTodo === false && obj.futureTodo === false) {
       dateValidation.textContent = errorMsgDate;
       isGood = false;
+    } else {
+      dateValidation.textContent = ``;
+      isGood = true;
     }
 
     return isGood;
