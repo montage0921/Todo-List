@@ -3,6 +3,10 @@ import { projectContainer } from ".";
 import { dataProcessor } from "./dataProcessor";
 
 export const renderProject = (function () {
+  const errorMsg = `The name is Repeated!`;
+
+  const projectValidation = document.querySelector(`.errorMsg-Project`);
+
   function showProjectForm() {
     projectForm.classList.remove(`hidden`);
   }
@@ -22,7 +26,7 @@ export const renderProject = (function () {
       textHTML += `
       <div class="project">
       <img class="project-icon" src="" alt="" />
-      <div class="project">${name}</div>
+      <div class="project-name">${name}</div>
       <img class="project-delete" src="" alt="" />
     </div>
         `;
@@ -31,5 +35,22 @@ export const renderProject = (function () {
     projectContainer.insertAdjacentHTML(`beforeend`, textHTML);
   }
 
-  return { showProjectForm, hideProjectForm, renderProjectList };
+  function renderValidationMsg(name) {
+    const projectNameArr = dataProcessor.getPropertyName();
+
+    let isRepeated = projectNameArr.some((projectName) => projectName === name);
+
+    if (isRepeated) {
+      projectValidation.textContent = errorMsg;
+    } else projectValidation.textContent = ``;
+
+    return isRepeated;
+  }
+
+  return {
+    showProjectForm,
+    hideProjectForm,
+    renderProjectList,
+    renderValidationMsg,
+  };
 })();

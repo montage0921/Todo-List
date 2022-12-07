@@ -15,6 +15,8 @@ const hideProjectFormBtn = document.querySelector(`#project-cancel`);
 
 export const projectContainer = document.querySelector(`.project-section`);
 
+const projectBtns = document.querySelectorAll(`.project`);
+
 ////////////////////////////
 const eventController = (function () {
   addProjectBtn.addEventListener(`click`, function () {
@@ -25,6 +27,10 @@ const eventController = (function () {
     e.preventDefault();
 
     const projectName = projectInput.value;
+
+    const isRepeated = renderProject.renderValidationMsg(projectName);
+
+    if (isRepeated) return;
 
     dataProcessor.addProject(projectName);
 
@@ -38,4 +44,8 @@ const eventController = (function () {
     projectInput.value = ``;
     renderProject.hideProjectForm();
   });
+
+  //   projectContainer.addEventListener(`click`, function (e) {
+  //     console.log(e.target);
+  //   });
 })();
