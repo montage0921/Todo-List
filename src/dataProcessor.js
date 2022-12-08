@@ -99,7 +99,7 @@ export const dataProcessor = (function () {
     }
 
     updateTodayProject();
-    console.log(projectObj);
+    updateUpcomingProject();
   }
 
   function updateTodayProject() {
@@ -114,7 +114,17 @@ export const dataProcessor = (function () {
     });
   }
 
-  function updateUpcomingProject() {}
+  function updateUpcomingProject() {
+    projectObj.Upcoming.forEach((todo, i) => {
+      const isoDate = new Date(todo.date.replace(/-/g, "/"));
+      if (isFuture(isoDate) === false) {
+        if (isToday(isoDate) === true) {
+          projectObj.Today.push(todo);
+          projectObj.Upcoming.splice(i);
+        } else projectObj.Upcoming.splice(i);
+      }
+    });
+  }
 
   return {
     addProject,

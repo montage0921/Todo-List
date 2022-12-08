@@ -110,7 +110,10 @@ const eventController = (function () {
   });
 
   todoContainer.addEventListener(`click`, function (e) {
-    const projectBelongTo = e.target.parentNode.childNodes[9].textContent;
+    let projectBelongTo;
+    if (e.target.parentNode.childNodes[9] !== undefined) {
+      projectBelongTo = e.target.parentNode.childNodes[9].textContent;
+    }
 
     //delete todo
     if (e.target.className === `delete-todo`) {
@@ -170,7 +173,6 @@ const eventController = (function () {
       if (isGood === false) return;
 
       dataProcessor.updateTodo(todoID, updateInfo);
-      // dataProcessor.updateTodayProject();
     }
   });
 })();
