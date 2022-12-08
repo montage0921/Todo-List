@@ -125,7 +125,7 @@ const eventController = (function () {
     // check todo
     if (e.target.className === `checkbox`) {
       let isChecked = e.target.checked;
-      console.log(isChecked);
+
       const todoID = +e.target.parentNode.id;
 
       dataProcessor.updateFinish(isChecked, todoID);
@@ -148,7 +148,6 @@ const eventController = (function () {
     // update todo
     if (e.target.classList[1] === `button-update`) {
       const todoID = +e.target.parentNode.id;
-      const parentEle = e.target.parentNode;
 
       const updateNameInput = document.querySelector(`#update-todo-name`);
       const updateDescriptionInput =
@@ -173,6 +172,10 @@ const eventController = (function () {
       if (isGood === false) return;
 
       dataProcessor.updateTodo(todoID, updateInfo);
+
+      const project = dataProcessor.getTodo(todoID, `Inbox`)[0].projectBelongTo;
+
+      renderProject.renderTodoList(project);
     }
   });
 })();
