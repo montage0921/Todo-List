@@ -129,11 +129,17 @@ const eventController = (function () {
 
       e.target.parentNode.classList.toggle(`true`);
     }
+    //show edit form
     if (e.target.className === `edit-todo`) {
       const todoID = +e.target.parentNode.id;
       const parentEle = e.target.parentNode;
 
       renderProject.showEditForm(todoID, projectBelongTo, parentEle);
+    }
+    if (e.target.classList[1] === `button-cancelUpdate`) {
+      const todoID = +e.target.parentNode.id;
+      const parentEle = e.target.parentNode;
+      renderProject.hideEditForm(todoID, parentEle);
     }
   });
 })();

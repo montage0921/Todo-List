@@ -134,13 +134,13 @@ export const renderProject = (function () {
     // parentEle.classList.add(`hidden`);
 
     if (parentEle.nextElementSibling !== null) {
-      if (parentEle.nextElementSibling.className === `todo-form`) {
+      if (parentEle.nextElementSibling.className === `editTodo-form`) {
         parentEle.nextElementSibling.remove();
       }
     }
 
     const formHTMLText = `
-     <form class="todo-form" id=${todo[0].id}>
+     <form class="editTodo-form" id=${todo[0].id}>
           <div class="inputDiv">
             <label for="todo-name">Name: </label>
             <input id="todo-name" type="text" required value="${
@@ -177,12 +177,22 @@ export const renderProject = (function () {
             }>Casual</option>
           </select>
 
-          <input type="submit" value="Update" class="button button-submit" />
-          <input type="button" value="Cancel" class="button button-cancel" />
+          <input type="submit" value="Update" class="button button-update" />
+          <input type="button" value="Cancel" class="button button-cancelUpdate" />
         </form>
     `;
 
     parentEle.insertAdjacentHTML(`afterend`, formHTMLText);
+  }
+
+  function hideEditForm(todoID, parentEle) {
+    const eleArr = Array.from(parentEle.parentNode.children);
+
+    const theForm = eleArr.filter(
+      (ele) => +ele.id === todoID && ele.className === `editTodo-form`
+    )[0];
+
+    parentEle.remove(theForm);
   }
 
   return {
@@ -195,5 +205,6 @@ export const renderProject = (function () {
     hideTodoForm,
     validateTodoMsg,
     showEditForm,
+    hideEditForm,
   };
 })();
