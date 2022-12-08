@@ -222,7 +222,7 @@ header {
   width: 99%;
   height: 40px;
   display: grid;
-  grid-template-columns: auto 1fr 1.5fr auto 1fr 1fr auto auto;
+  grid-template-columns: auto 1fr 1.5fr 0.5fr 1fr 1fr auto auto;
   border-bottom: 1px solid lightgray;
 
   border-radius: 15px;
