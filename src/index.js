@@ -136,10 +136,41 @@ const eventController = (function () {
 
       renderProject.showEditForm(todoID, projectBelongTo, parentEle);
     }
+    //cancel todo edition
     if (e.target.classList[1] === `button-cancelUpdate`) {
       const todoID = +e.target.parentNode.id;
       const parentEle = e.target.parentNode;
       renderProject.hideEditForm(todoID, parentEle);
+    }
+    // update todo
+    if (e.target.classList[1] === `button-update`) {
+      const todoID = +e.target.parentNode.id;
+      const parentEle = e.target.parentNode;
+
+      const updateNameInput = document.querySelector(`#update-todo-name`);
+      const updateDescriptionInput =
+        document.querySelector(`#update-todo-note`);
+      const updateDateInput = document.querySelector(`#update-todo-date`);
+      const updatePriorityInput = document.querySelector(
+        `#update-todo-priority`
+      );
+      const validEleUpdate = document.querySelector(`.errorMsg-date-update`);
+
+      const updateInfo = [
+        updateNameInput.value,
+        updateDescriptionInput.value,
+        updateDateInput.value,
+        updatePriorityInput.value,
+      ];
+
+      const isGood = renderProject.validateDateUpdate(
+        updateDateInput.value,
+        validEleUpdate
+      );
+      if (isGood === false) return;
+
+      dataProcessor.updateTodo(todoID, updateInfo);
+      // dataProcessor.updateTodayProject();
     }
   });
 })();

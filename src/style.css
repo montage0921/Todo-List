@@ -103,7 +103,8 @@ header {
 
 .errorMsg-Project,
 .errorMsg-Todo,
-.errorMsg-Date {
+.errorMsg-Date,
+.errorMsg-date-update {
   color: red;
   font-size: 0.85em;
 }

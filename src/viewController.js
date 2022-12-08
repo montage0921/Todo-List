@@ -142,29 +142,29 @@ export const renderProject = (function () {
     const formHTMLText = `
      <form class="editTodo-form" id=${todo[0].id}>
           <div class="inputDiv">
-            <label for="todo-name">Name: </label>
-            <input id="todo-name" type="text" required value="${
+            <label for="update-todo-name">Name: </label>
+            <input id="update-todo-name" type="text" required value="${
               todo[0].name
             }" />
             <div class="errorMsg-Todo"></div>
           </div>
 
           <div class="inputDiv">
-            <label for="todo-note">Note: </label>
-            <input id="todo-note" type="text" required maxlength="70" value="${
+            <label for="update-todo-note">Note: </label>
+            <input id="update-todo-note" type="text" required maxlength="70" value="${
               todo[0].description
             }"/>
           </div>
 
           <div class="inputDiv">
-            <div class="errorMsg-Date"></div>
-            <label for="todo-date">Date: </label>
-            <input id="todo-date" type="date" required value="${
+            <div class="errorMsg-date-update"></div>
+            <label for="update-todo-date">Date: </label>
+            <input id="update-todo-date" type="date" required value="${
               todo[0].date
             }" />
           </div>
 
-          <select name="priority" id="priority">
+          <select name="priority" id="update-todo-priority">
             <optgroup label="Priority"></optgroup>
             <option value="Important" ${
               todo[0].priority === `Important` ? `selected` : ``
@@ -177,7 +177,7 @@ export const renderProject = (function () {
             }>Casual</option>
           </select>
 
-          <input type="submit" value="Update" class="button button-update" />
+          <input type="button" value="Update" class="button button-update" />
           <input type="button" value="Cancel" class="button button-cancelUpdate" />
         </form>
     `;
@@ -195,6 +195,21 @@ export const renderProject = (function () {
     parentEle.remove(theForm);
   }
 
+  function validateDateUpdate(date, validEle) {
+    const obj = isTodayOrFuture(date);
+
+    let isGood;
+
+    if (obj.todayTodo === false && obj.futureTodo === false) {
+      validEle.textContent = errorMsgDate;
+      isGood = false;
+    } else {
+      validEle.textContent = ``;
+      isGood = true;
+    }
+    return isGood;
+  }
+
   return {
     showProjectForm,
     hideProjectForm,
@@ -206,5 +221,6 @@ export const renderProject = (function () {
     validateTodoMsg,
     showEditForm,
     hideEditForm,
+    validateDateUpdate,
   };
 })();

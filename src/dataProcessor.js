@@ -87,6 +87,35 @@ export const dataProcessor = (function () {
     return projectObj[projectBelongTo].filter((ele) => ele.id === id);
   }
 
+  function updateTodo(id, updateInfo) {
+    for (const prop in projectObj) {
+      projectObj[prop].forEach((obj) => {
+        if (obj.id === id) {
+          (obj.name = updateInfo[0]), (obj.description = updateInfo[1]);
+          obj.date = updateInfo[2];
+          obj.priority = updateInfo[3];
+        }
+      });
+    }
+
+    updateTodayProject();
+    console.log(projectObj);
+  }
+
+  function updateTodayProject() {
+    projectObj.Today.forEach((todo, i) => {
+      const isoDate = new Date(todo.date.replace(/-/g, "/"));
+      if (isToday(isoDate) === false) {
+        if (isFuture(isoDate) === true) {
+          projectObj.Upcoming.push(todo);
+          projectObj.Today.splice(i);
+        } else projectObj.Today.splice(i);
+      }
+    });
+  }
+
+  function updateUpcomingProject() {}
+
   return {
     addProject,
     getPropertyName,
@@ -96,5 +125,8 @@ export const dataProcessor = (function () {
     deleteTodo,
     updateFinish,
     getTodo,
+    updateTodo,
+    updateTodayProject,
+    updateUpcomingProject,
   };
 })();
