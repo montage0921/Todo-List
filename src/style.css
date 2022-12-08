@@ -237,7 +237,13 @@ header {
 }
 
 .todo.Easy {
-  border-left: 15px solid green;
+  border-left: 15px solid pink;
+}
+
+.todo.true {
+  color: grey;
+  text-decoration: line-through;
+  border-left: 15px solid grey;
 }
 
 .todo > * {
@@ -255,7 +261,7 @@ header {
 }
 
 .priority.Easy {
-  color: green;
+  color: pink;
 }
 
 .todo input {

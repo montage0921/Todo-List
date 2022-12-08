@@ -110,13 +110,24 @@ const eventController = (function () {
   });
 
   todoContainer.addEventListener(`click`, function (e) {
+    const projectBelongTo = e.target.parentNode.childNodes[9].textContent;
+
     //delete todo
     if (e.target.className === `delete-todo`) {
       const todoID = +e.target.parentNode.id;
-      const projectBelongTo = e.target.parentNode.childNodes[9].textContent;
 
       dataProcessor.deleteTodo(todoID);
       renderProject.renderTodoList(projectBelongTo);
+    }
+    // check todo
+    if (e.target.className === `checkbox`) {
+      let isChecked = e.target.checked;
+      console.log(isChecked);
+      const todoID = +e.target.parentNode.id;
+
+      dataProcessor.updateFinish(isChecked, todoID);
+
+      e.target.parentNode.classList.toggle(`true`);
     }
   });
 })();

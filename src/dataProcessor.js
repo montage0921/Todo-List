@@ -73,6 +73,16 @@ export const dataProcessor = (function () {
     }
   }
 
+  function updateFinish(isChecked, id) {
+    for (const prop in projectObj) {
+      projectObj[prop].forEach((obj, i) => {
+        if (obj.id === id) {
+          projectObj[prop][i].isFinished = isChecked;
+        }
+      });
+    }
+  }
+
   return {
     addProject,
     getPropertyName,
@@ -80,5 +90,6 @@ export const dataProcessor = (function () {
     addTodo,
     getProperty,
     deleteTodo,
+    updateFinish,
   };
 })();
