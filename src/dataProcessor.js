@@ -8,11 +8,12 @@ export const dataProcessor = (function () {
   };
 
   class Todo {
-    constructor(name, description, date, priority) {
+    constructor(name, description, date, priority, projectBelongTo) {
       (this.name = name), (this.description = description), (this.date = date);
       this.priority = priority;
       this.id = Date.now();
       this.isFinished = false;
+      this.projectBelongTo = projectBelongTo;
     }
   }
 
@@ -33,14 +34,14 @@ export const dataProcessor = (function () {
     delete projectObj[project];
   }
 
-  function createTodo(name, description, date, priority) {
-    const todo = new Todo(name, description, date, priority);
+  function createTodo(name, description, date, priority, projectBelongTo) {
+    const todo = new Todo(name, description, date, priority, projectBelongTo);
 
     return todo;
   }
 
   function addTodo(name, description, date, priority, projectBelongTo) {
-    const todo = createTodo(name, description, date, priority);
+    const todo = createTodo(name, description, date, priority, projectBelongTo);
     const isoDate = new Date(date.replace(/-/g, "/"));
 
     projectObj[projectBelongTo].push(todo);
@@ -54,8 +55,11 @@ export const dataProcessor = (function () {
           projectObj.Upcoming.push(todo);
       }
     }
-    console.log(projectObj);
   }
 
-  return { addProject, getPropertyName, removeProject, addTodo };
+  function getProperty(projectName) {
+    return projectObj[projectName];
+  }
+
+  return { addProject, getPropertyName, removeProject, addTodo, getProperty };
 })();

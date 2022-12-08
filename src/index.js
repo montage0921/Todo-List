@@ -59,24 +59,24 @@ const eventController = (function () {
   });
 
   projectContainer.addEventListener(`click`, function (e) {
-    if (e.target.className === `project-delete`) {
-      const project =
-        e.target.parentNode.querySelector(`.project-name`).textContent;
+    let project;
+
+    if (e.target.className === `project`) {
+      project = e.target.childNodes[3].textContent;
+      renderProject.renderTodoList(project);
+    } else if (e.target.className === `project-delete`) {
+      project = e.target.parentNode.querySelector(`.project-name`).textContent;
 
       dataProcessor.removeProject(project);
       renderProject.renderProjectList();
-    }
-  });
-
-  //////// NOT FINISHED///////////
-  projectContainer.addEventListener(`click`, function (e) {
-    if (e.target.className !== `project-delete`) {
-      const project =
-        e.target.parentNode.querySelector(`.project-name`).textContent;
+    } else {
+      project = e.target.parentNode.querySelector(`.project-name`).textContent;
 
       renderProject.renderTodoList(project);
     }
   });
+
+  //////// NOT FINISHED///////////
 
   //////////Todo Event//////////////
   addTodoBtn.addEventListener(`click`, function () {
@@ -84,8 +84,6 @@ const eventController = (function () {
   });
 
   hideTodoFormBtn.addEventListener(`click`, function () {
-    inputArr.forEach((input) => (input.value = ``));
-
     renderProject.hideTodoForm();
   });
 
@@ -98,12 +96,13 @@ const eventController = (function () {
     const note = noteInput.value;
     const date = dateInput.value;
     const priority = priorityInput.value;
-    console.log(priority);
 
     const isGood = renderProject.validateTodoMsg(date);
     if (isGood === false) return;
 
     dataProcessor.addTodo(name, note, date, priority, projectBelongTo);
+
+    renderProject.renderTodoList(projectBelongTo);
 
     renderProject.hideTodoForm();
   });

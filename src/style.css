@@ -224,8 +224,20 @@ header {
   display: grid;
   grid-template-columns: auto 1fr 1.5fr auto 1fr 1fr auto auto;
   border-bottom: 1px solid lightgray;
-  border-left: 15px solid red;
+
   border-radius: 15px;
+}
+
+.todo.Important {
+  border-left: 15px solid red;
+}
+
+.todo.Normal {
+  border-left: 15px solid orange;
+}
+
+.todo.Easy {
+  border-left: 15px solid green;
 }
 
 .todo > * {
@@ -234,8 +246,16 @@ header {
   cursor: pointer;
 }
 
-.priority {
+.priority.Important {
   color: red;
+}
+
+.priority.Normal {
+  color: orange;
+}
+
+.priority.Easy {
+  color: green;
 }
 
 .todo input {

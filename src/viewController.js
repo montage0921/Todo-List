@@ -14,6 +14,7 @@ export const renderProject = (function () {
 
   const todoValidation = document.querySelector(`.errorMsg-Todo`);
   const dateValidation = document.querySelector(`.errorMsg-Date`);
+  const todoContainer = document.querySelector(`.todoContainer`);
 
   function showProjectForm() {
     projectForm.classList.remove(`hidden`);
@@ -58,15 +59,16 @@ export const renderProject = (function () {
     return isRepeated;
   }
 
-  function renderTodoList(project) {
-    inboxIndicator.textContent = project;
-  }
-
   function showTodoForm() {
     todoForm.classList.remove(`hidden`);
   }
 
+  function clearTodoFormInput() {
+    inputArr.forEach((input) => (input.value = ``));
+  }
+
   function hideTodoForm() {
+    clearTodoFormInput();
     todoForm.classList.add(`hidden`);
   }
 
@@ -93,6 +95,38 @@ export const renderProject = (function () {
     }
 
     return isGood;
+  }
+
+  function renderTodoList(project) {
+    todoContainer.innerHTML = ``;
+    inboxIndicator.textContent = project;
+    let textHTML = ``;
+    const todoArr = dataProcessor.getProperty(project);
+
+    if (todoArr.length === 0) textHTML = ``;
+
+    todoArr.forEach((todo) => {
+      textHTML += `
+     
+        <div class="todo ${todo.priority}">
+          <input type="radio" name="" id="" />
+          <span class="title"><b>${todo.name}</b> </span>
+
+          <span class="discription"
+            ><i
+              >${todo.description}</i
+            >
+          </span>
+          <span class="priority ${todo.priority}">${todo.priority}</span>
+          <span class="project-belongTo">${todo.projectBelongTo}</span>
+          <span class="date">${todo.date}</span>
+          <img src="" alt="" class="edit-todo" />
+          <img src="" alt="" class="delete-todo" />
+       </div>
+      `;
+    });
+
+    todoContainer.insertAdjacentHTML(`afterbegin`, textHTML);
   }
 
   return {
