@@ -129,5 +129,11 @@ const eventController = (function () {
 
       e.target.parentNode.classList.toggle(`true`);
     }
+    if (e.target.className === `edit-todo`) {
+      const todoID = +e.target.parentNode.id;
+      const parentEle = e.target.parentNode;
+
+      renderProject.showEditForm(todoID, projectBelongTo, parentEle);
+    }
   });
 })();

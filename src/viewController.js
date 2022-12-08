@@ -129,6 +129,62 @@ export const renderProject = (function () {
     todoContainer.insertAdjacentHTML(`afterbegin`, textHTML);
   }
 
+  function showEditForm(todoID, projectBelongTo, parentEle) {
+    const todo = dataProcessor.getTodo(todoID, projectBelongTo);
+    // parentEle.classList.add(`hidden`);
+
+    if (parentEle.nextElementSibling !== null) {
+      if (parentEle.nextElementSibling.className === `todo-form`) {
+        parentEle.nextElementSibling.remove();
+      }
+    }
+
+    const formHTMLText = `
+     <form class="todo-form" id=${todo[0].id}>
+          <div class="inputDiv">
+            <label for="todo-name">Name: </label>
+            <input id="todo-name" type="text" required value="${
+              todo[0].name
+            }" />
+            <div class="errorMsg-Todo"></div>
+          </div>
+
+          <div class="inputDiv">
+            <label for="todo-note">Note: </label>
+            <input id="todo-note" type="text" required maxlength="70" value="${
+              todo[0].description
+            }"/>
+          </div>
+
+          <div class="inputDiv">
+            <div class="errorMsg-Date"></div>
+            <label for="todo-date">Date: </label>
+            <input id="todo-date" type="date" required value="${
+              todo[0].date
+            }" />
+          </div>
+
+          <select name="priority" id="priority">
+            <optgroup label="Priority"></optgroup>
+            <option value="Important" ${
+              todo[0].priority === `Important` ? `selected` : ``
+            }>Important</option>
+            <option value="Normal" ${
+              todo[0].priority === `Normal` ? `selected` : ``
+            }>Normal</option>
+            <option value="Easy" ${
+              todo[0].priority === `Easy` ? `selected` : ``
+            }>Casual</option>
+          </select>
+
+          <input type="submit" value="Update" class="button button-submit" />
+          <input type="button" value="Cancel" class="button button-cancel" />
+        </form>
+    `;
+
+    parentEle.insertAdjacentHTML(`afterend`, formHTMLText);
+  }
+
   return {
     showProjectForm,
     hideProjectForm,
@@ -138,5 +194,6 @@ export const renderProject = (function () {
     showTodoForm,
     hideTodoForm,
     validateTodoMsg,
+    showEditForm,
   };
 })();

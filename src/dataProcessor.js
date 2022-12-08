@@ -83,6 +83,10 @@ export const dataProcessor = (function () {
     }
   }
 
+  function getTodo(id, projectBelongTo) {
+    return projectObj[projectBelongTo].filter((ele) => ele.id === id);
+  }
+
   return {
     addProject,
     getPropertyName,
@@ -91,5 +95,6 @@ export const dataProcessor = (function () {
     getProperty,
     deleteTodo,
     updateFinish,
+    getTodo,
   };
 })();
