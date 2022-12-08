@@ -108,7 +108,7 @@ export const renderProject = (function () {
     todoArr.forEach((todo) => {
       textHTML += `
      
-        <div class="todo ${todo.priority}">
+        <div class="todo ${todo.priority}" id=${todo.id}>
           <input type="radio" name="" id="" />
           <span class="title"><b>${todo.name}</b> </span>
 

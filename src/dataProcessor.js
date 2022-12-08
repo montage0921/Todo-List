@@ -55,11 +55,30 @@ export const dataProcessor = (function () {
           projectObj.Upcoming.push(todo);
       }
     }
+
+    console.log(projectObj);
   }
 
   function getProperty(projectName) {
     return projectObj[projectName];
   }
 
-  return { addProject, getPropertyName, removeProject, addTodo, getProperty };
+  function deleteTodo(id) {
+    for (const prop in projectObj) {
+      projectObj[prop].forEach((obj, i) => {
+        if (obj.id === id) {
+          projectObj[prop].splice(i, 1);
+        }
+      });
+    }
+  }
+
+  return {
+    addProject,
+    getPropertyName,
+    removeProject,
+    addTodo,
+    getProperty,
+    deleteTodo,
+  };
 })();

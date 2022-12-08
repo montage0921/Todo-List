@@ -29,6 +29,8 @@ const priorityInput = document.querySelector(`#priority`);
 
 export const inputArr = [nameInput, noteInput, dateInput, priorityInput];
 
+const todoContainer = document.querySelector(`.todoContainer`);
+
 ////////////////////////////
 const eventController = (function () {
   /////////Project//////////////
@@ -105,5 +107,16 @@ const eventController = (function () {
     renderProject.renderTodoList(projectBelongTo);
 
     renderProject.hideTodoForm();
+  });
+
+  todoContainer.addEventListener(`click`, function (e) {
+    //delete todo
+    if (e.target.className === `delete-todo`) {
+      const todoID = +e.target.parentNode.id;
+      const projectBelongTo = e.target.parentNode.childNodes[9].textContent;
+
+      dataProcessor.deleteTodo(todoID);
+      renderProject.renderTodoList(projectBelongTo);
+    }
   });
 })();
