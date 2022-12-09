@@ -37,8 +37,6 @@ const upcomingBtn = document.querySelector(`.upcoming`);
 
 ////////////////////////////
 const eventController = (function () {
-  dataProcessor.getLocalStorageProject();
-  renderProject.renderProjectList();
   /////////Project//////////////
   addProjectBtn.addEventListener(`click`, function () {
     renderProject.showProjectForm();
@@ -54,7 +52,6 @@ const eventController = (function () {
     if (isRepeated) return;
 
     dataProcessor.addProject(projectName);
-    dataProcessor.setLocalStorageProject();
 
     renderProject.renderProjectList();
 
@@ -78,7 +75,6 @@ const eventController = (function () {
       project = e.target.parentNode.querySelector(`.project-name`).textContent;
 
       dataProcessor.removeProject(project);
-      dataProcessor.setLocalStorageProject();
 
       renderProject.renderProjectList();
       renderProject.renderTodoList(`Inbox`);
@@ -88,8 +84,6 @@ const eventController = (function () {
       renderProject.renderTodoList(project);
     }
   });
-
-  //////// NOT FINISHED///////////
 
   //////////Todo Event//////////////
   addTodoBtn.addEventListener(`click`, function () {
@@ -114,7 +108,6 @@ const eventController = (function () {
     if (isGood === false) return;
 
     dataProcessor.addTodo(name, note, date, priority, projectBelongTo);
-    dataProcessor.setLocalStorageProject();
 
     renderProject.renderTodoList(projectBelongTo);
 
@@ -132,7 +125,7 @@ const eventController = (function () {
       const todoID = +e.target.parentNode.id;
 
       dataProcessor.deleteTodo(todoID);
-      dataProcessor.setLocalStorageProject();
+
       renderProject.renderTodoList(projectBelongTo);
     }
     // check todo
@@ -142,7 +135,6 @@ const eventController = (function () {
       const todoID = +e.target.parentNode.id;
 
       dataProcessor.updateFinish(isChecked, todoID);
-      dataProcessor.setLocalStorageProject();
 
       e.target.parentNode.classList.toggle(`true`);
     }
@@ -186,7 +178,6 @@ const eventController = (function () {
       if (isGood === false) return;
 
       dataProcessor.updateTodo(todoID, updateInfo);
-      dataProcessor.setLocalStorageProject();
 
       const project = dataProcessor.getTodo(todoID, `Inbox`)[0].projectBelongTo;
 

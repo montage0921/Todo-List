@@ -31,16 +31,20 @@ export const dataProcessor = (function () {
   }
 
   function removeProject(project) {
-    const allTodoID = projectObj[project].map((todo) => todo.id);
-    delete projectObj[project];
+    const todoIDs = [];
+    projectObj[project].forEach((todo) => {
+      todoIDs.push(todo.id);
+    });
 
     for (const prop in projectObj) {
-      allTodoID.forEach((id) => {
+      todoIDs.forEach((id) => {
         projectObj[prop].forEach((todo, i) => {
           if (todo.id == id) projectObj[prop].splice(i);
         });
       });
     }
+
+    delete projectObj[project];
   }
 
   function createTodo(name, description, date, priority, projectBelongTo) {
@@ -161,6 +165,7 @@ export const dataProcessor = (function () {
     addTodo,
     getProperty,
     deleteTodo,
+
     updateFinish,
     getTodo,
     updateTodo,
