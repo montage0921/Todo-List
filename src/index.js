@@ -38,6 +38,7 @@ const upcomingBtn = document.querySelector(`.upcoming`);
 ////////////////////////////
 const eventController = (function () {
   dataProcessor.getLocalStorage();
+  renderProject.renderProjectList();
 
   /////////Project//////////////
   addProjectBtn.addEventListener(`click`, function () {
