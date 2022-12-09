@@ -75,7 +75,9 @@ const eventController = (function () {
       project = e.target.parentNode.querySelector(`.project-name`).textContent;
 
       dataProcessor.removeProject(project);
+
       renderProject.renderProjectList();
+      renderProject.renderTodoList(`Inbox`);
     } else {
       project = e.target.parentNode.querySelector(`.project-name`).textContent;
       addTodoBtn.classList.remove(`hidden`);
