@@ -210,6 +210,12 @@ export const renderProject = (function () {
     return isGood;
   }
 
+  function renderLocalStorage() {
+    const projectNameArr = dataProcessor.getPropertyName();
+    console.log(projectNameArr);
+    renderProjectList();
+  }
+
   return {
     showProjectForm,
     hideProjectForm,
@@ -222,5 +228,6 @@ export const renderProject = (function () {
     showEditForm,
     hideEditForm,
     validateDateUpdate,
+    renderLocalStorage,
   };
 })();

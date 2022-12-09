@@ -1,7 +1,7 @@
 import { isToday, isFuture } from "date-fns";
 
 export const dataProcessor = (function () {
-  const projectObj = {
+  let projectObj = {
     Inbox: [],
     Today: [],
     Upcoming: [],
@@ -145,6 +145,15 @@ export const dataProcessor = (function () {
     });
   }
 
+  //////////////local storage/////////////////
+  function setLocalStorageProject() {
+    localStorage.setItem(`projectObj`, JSON.stringify(projectObj));
+  }
+
+  function getLocalStorageProject() {
+    projectObj = localStorage.getItem(`projectObj`);
+  }
+
   return {
     addProject,
     getPropertyName,
@@ -158,5 +167,7 @@ export const dataProcessor = (function () {
     updateTodayProject,
     updateUpcomingProject,
     sortTodoByDate,
+    setLocalStorageProject,
+    getLocalStorageProject,
   };
 })();
