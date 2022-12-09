@@ -153,7 +153,11 @@ export const dataProcessor = (function () {
   }
 
   function getLocalStorage() {
-    projectObj = localStorage.getItem(`projectObj`);
+    if (localStorage.getItem(`projectObj`) === null) return;
+
+    projectObj = JSON.parse(localStorage.getItem(`projectObj`));
+
+    console.log(projectObj);
   }
 
   return {

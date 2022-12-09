@@ -37,6 +37,8 @@ const upcomingBtn = document.querySelector(`.upcoming`);
 
 ////////////////////////////
 const eventController = (function () {
+  dataProcessor.getLocalStorage();
+
   /////////Project//////////////
   addProjectBtn.addEventListener(`click`, function () {
     renderProject.showProjectForm();
