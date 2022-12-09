@@ -39,6 +39,7 @@ const upcomingBtn = document.querySelector(`.upcoming`);
 const eventController = (function () {
   dataProcessor.getLocalStorage();
   renderProject.renderProjectList();
+  renderProject.renderTodoList(`Inbox`);
 
   /////////Project//////////////
   addProjectBtn.addEventListener(`click`, function () {
