@@ -52,6 +52,7 @@ const eventController = (function () {
     if (isRepeated) return;
 
     dataProcessor.addProject(projectName);
+    dataProcessor.setLocalStorage();
 
     renderProject.renderProjectList();
     renderProject.renderTodoList(projectName);
@@ -76,6 +77,7 @@ const eventController = (function () {
       project = e.target.parentNode.querySelector(`.project-name`).textContent;
 
       dataProcessor.removeProject(project);
+      dataProcessor.setLocalStorage();
 
       renderProject.renderProjectList();
       renderProject.renderTodoList(`Inbox`);
@@ -109,6 +111,7 @@ const eventController = (function () {
     if (isGood === false) return;
 
     dataProcessor.addTodo(name, note, date, priority, projectBelongTo);
+    dataProcessor.setLocalStorage();
 
     renderProject.renderTodoList(projectBelongTo);
 
@@ -131,6 +134,7 @@ const eventController = (function () {
       const todoID = +e.target.parentNode.id;
 
       dataProcessor.deleteTodo(todoID);
+      dataProcessor.setLocalStorage();
 
       renderProject.renderTodoList(currentProject);
     }
@@ -141,6 +145,7 @@ const eventController = (function () {
       const todoID = +e.target.parentNode.id;
 
       dataProcessor.updateFinish(isChecked, todoID);
+      dataProcessor.setLocalStorage();
 
       e.target.parentNode.classList.toggle(`true`);
     }
@@ -184,6 +189,7 @@ const eventController = (function () {
       if (isGood === false) return;
 
       dataProcessor.updateTodo(todoID, updateInfo);
+      dataProcessor.setLocalStorage();
 
       const project = dataProcessor.getTodo(todoID, `Inbox`)[0].projectBelongTo;
 
@@ -193,6 +199,7 @@ const eventController = (function () {
 
   inboxBtn.addEventListener(`click`, function () {
     dataProcessor.sortTodoByDate(`Inbox`);
+    dataProcessor.setLocalStorage();
     addTodoBtn.classList.remove(`hidden`);
     renderProject.renderTodoList(`Inbox`);
   });
@@ -201,6 +208,7 @@ const eventController = (function () {
     dataProcessor.updateTodayProject();
     dataProcessor.updateUpcomingProject();
     dataProcessor.sortTodoByDate(`Today`);
+    dataProcessor.setLocalStorage();
     renderProject.renderTodoList(`Today`);
     addTodoBtn.classList.add(`hidden`);
   });
@@ -209,6 +217,7 @@ const eventController = (function () {
     dataProcessor.updateTodayProject();
     dataProcessor.updateUpcomingProject();
     dataProcessor.sortTodoByDate(`Upcoming`);
+    dataProcessor.setLocalStorage();
     renderProject.renderTodoList(`Upcoming`);
     addTodoBtn.classList.add(`hidden`);
   });

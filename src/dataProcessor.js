@@ -148,11 +148,11 @@ export const dataProcessor = (function () {
   }
 
   //////////////local storage/////////////////
-  function setLocalStorageProject() {
+  function setLocalStorage() {
     localStorage.setItem(`projectObj`, JSON.stringify(projectObj));
   }
 
-  function getLocalStorageProject() {
+  function getLocalStorage() {
     projectObj = localStorage.getItem(`projectObj`);
   }
 
@@ -170,7 +170,7 @@ export const dataProcessor = (function () {
     updateTodayProject,
     updateUpcomingProject,
     sortTodoByDate,
-    setLocalStorageProject,
-    getLocalStorageProject,
+    setLocalStorage,
+    getLocalStorage,
   };
 })();
