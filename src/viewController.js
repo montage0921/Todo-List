@@ -39,7 +39,7 @@ export const renderProject = (function () {
             <div class="project">
             <img class="project-icon" src="" alt="" />
             <div class="project-name">${name}</div>
-            <img class="project-delete" src="" alt="" />
+            <img class="project-delete" src="" alt=""  />
           </div>
               `;
         projectContainer.insertAdjacentHTML(`beforeend`, textHTML);

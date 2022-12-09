@@ -4,6 +4,8 @@ body {
   grid-template-rows: auto 1fr;
 
   margin: 0;
+  font-family: "system-ui", "Segoe UI", Roboto, "Apple Color Emoji", Helvetica,
+    Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 header {
@@ -24,14 +26,13 @@ header {
 #nav {
   background-color: #fafafa;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 900px;
-  gap: 20px;
+  grid-template-rows: auto auto auto 900px;
 }
 
 #nav > div {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 5px;
   cursor: pointer;
   padding: 0 0 0 20px;
   background-color: #fafafa;
@@ -47,14 +48,20 @@ header {
 
 .inbox img {
   content: url(/src/assets/inbox.svg);
+  filter: invert(40%) sepia(91%) saturate(483%) hue-rotate(177deg)
+    brightness(102%) contrast(85%);
 }
 
 .today img {
   content: url(/src/assets/today.svg);
+  filter: invert(19%) sepia(97%) saturate(4272%) hue-rotate(144deg)
+    brightness(96%) contrast(98%);
 }
 
 .upcoming img {
   content: url(/src/assets/upcoming.svg);
+  filter: invert(20%) sepia(78%) saturate(2688%) hue-rotate(255deg)
+    brightness(89%) contrast(97%);
 }
 
 #nav img {
@@ -62,24 +69,31 @@ header {
 }
 
 .project-section {
+  margin-top: 10px;
   padding: 0 0 0 20px;
 }
 
 .project-title {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: 20px;
   margin-bottom: 10px;
 }
 
 .project-title h2 {
+  color: rgb(0, 0, 0, 0.56);
+  font-size: 18px;
   margin: 0;
 }
 
 #add-project {
   content: url(/src/assets/add-project.svg);
+  filter: invert(44%) sepia(58%) saturate(21%) hue-rotate(342deg)
+    brightness(98%) contrast(89%);
   height: 30px;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 #add-project:hover {
@@ -98,7 +112,10 @@ header {
 
 #project-form input {
   margin-right: 20px;
-  height: 20px;
+  height: 25px;
+  outline: none;
+  border: 1px solid grey;
+  border-radius: 5px;
 }
 
 .errorMsg-Project,
@@ -111,11 +128,12 @@ header {
 
 #project-form button {
   height: 30px;
-  width: 30px;
-  display: grid;
+  width: 60px;
   padding: 0;
   border: none;
+  border-radius: 3px;
   cursor: pointer;
+  font-weight: bolder;
 }
 
 #project-form button:active {
@@ -124,38 +142,39 @@ header {
 
 #project-check {
   margin-right: 10px;
-  background-color: greenyellow;
+  background-color: #db4c3f;
+  color: white;
+}
+
+#project-check:hover {
+  filter: brightness(0.85);
 }
 
 #project-cancel {
-  background-color: lightcoral;
+  background-color: #d0d0d0;
+  color: #444444;
 }
 
-#project-check img {
-  content: url(/src/assets/check.svg);
-  align-self: center;
-  justify-self: center;
-}
-
-#project-cancel img {
-  content: url(/src/assets/close.svg);
-  align-self: center;
-  justify-self: center;
+#project-cancel:hover {
+  filter: brightness(0.85);
 }
 
 .project {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 15px;
+
   background-color: #fafafa;
   cursor: pointer;
   margin-bottom: 5px;
+  color: rgb(0, 0, 0, 0.8);
 }
 
 .project-delete {
+  margin-right: 10px;
   content: url(/src/assets/delete.svg);
-
-  /* display: none; */
+  filter: invert(44%) sepia(58%) saturate(21%) hue-rotate(342deg)
+    brightness(98%) contrast(89%);
 }
 
 .project:hover {
@@ -167,7 +186,9 @@ header {
 }
 
 .project-icon {
-  content: url(/src/assets/project.svg);
+  content: url(/src/assets/dot.svg);
+  filter: invert(44%) sepia(58%) saturate(21%) hue-rotate(342deg)
+    brightness(98%) contrast(89%);
 }
 
 /* ////////////////////////// */
@@ -203,9 +224,11 @@ header {
 
 #add-todo {
   margin-top: 20px;
-  margin-bottom: 20px;
+
   content: url(/src/assets/add-todo.svg);
-  height: 70px;
+  filter: invert(36%) sepia(71%) saturate(3015%) hue-rotate(342deg)
+    brightness(95%) contrast(82%);
+  height: 40px;
   cursor: pointer;
 }
 
@@ -215,7 +238,7 @@ header {
 
 .whichProjectItis {
   font-size: 1.5rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   border-bottom: 1px solid lightgray;
 }
 
@@ -228,6 +251,46 @@ header {
   justify-content: center;
 }
 
+.todo-form input,
+.editTodo-form input {
+  height: 1.5em;
+  outline: none;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.todo-form .button,
+.editTodo-form .button {
+  height: 2em;
+  width: 6.5em;
+  border: none;
+  border-radius: 3px;
+}
+
+.todo-form .button-submit,
+.editTodo-form .button-update {
+  color: white;
+  font-weight: bolder;
+  background-color: #db4c3f;
+}
+
+.todo-form .button-submit:hover,
+.editTodo-form .button-update:hover {
+  filter: brightness(0.85);
+}
+
+.todo-form .button-cancel,
+.editTodo-form .button-cancelUpdate {
+  color: #444444;
+  font-weight: bolder;
+  background-color: #d0d0d0;
+}
+
+.todo-form .button-cancel:hover,
+.editTodo-form .button-cancelUpdate:hover {
+  filter: brightness(0.85);
+}
+
 .todoContainer {
   width: 99%;
   display: flex;
@@ -237,7 +300,8 @@ header {
 
 .todo {
   width: 99%;
-  height: auto;
+  min-height: 30px;
+
   display: grid;
   grid-template-columns: auto 1fr 1.5fr 0.5fr 1fr 1fr auto auto;
   border-bottom: 1px solid lightgray;
@@ -296,8 +360,10 @@ header {
 }
 
 .todo img {
-  height: 30px;
+  height: 20px;
   cursor: pointer;
+  filter: invert(50%) sepia(81%) saturate(3%) hue-rotate(358deg) brightness(85%)
+    contrast(84%);
 }
 
 .todo img:active {
@@ -306,6 +372,8 @@ header {
 
 .edit-todo {
   content: url(/src/assets/edit.svg);
+  height: 1px;
+  margin-right: 10px;
 }
 
 .delete-todo {
