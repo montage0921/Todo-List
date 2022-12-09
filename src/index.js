@@ -54,6 +54,7 @@ const eventController = (function () {
     dataProcessor.addProject(projectName);
 
     renderProject.renderProjectList();
+    renderProject.renderTodoList(projectName);
 
     projectInput.value = ``;
     renderProject.hideProjectForm();
@@ -120,13 +121,18 @@ const eventController = (function () {
       projectBelongTo = e.target.parentNode.childNodes[9].textContent;
     }
 
+    let currentProject =
+      e.target.parentNode.parentNode.parentNode.querySelector(
+        `.whichProjectItis`
+      ).textContent;
+
     //delete todo
     if (e.target.className === `delete-todo`) {
       const todoID = +e.target.parentNode.id;
 
       dataProcessor.deleteTodo(todoID);
 
-      renderProject.renderTodoList(projectBelongTo);
+      renderProject.renderTodoList(currentProject);
     }
     // check todo
     if (e.target.className === `checkbox`) {

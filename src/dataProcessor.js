@@ -31,20 +31,18 @@ export const dataProcessor = (function () {
   }
 
   function removeProject(project) {
-    const todoIDs = [];
-    projectObj[project].forEach((todo) => {
-      todoIDs.push(todo.id);
-    });
+    const allTodoID = projectObj[project].map((todo) => todo.id);
+    delete projectObj[project];
 
     for (const prop in projectObj) {
-      todoIDs.forEach((id) => {
+      allTodoID.forEach((id) => {
         projectObj[prop].forEach((todo, i) => {
           if (todo.id == id) projectObj[prop].splice(i);
         });
       });
     }
 
-    delete projectObj[project];
+    console.log(projectObj);
   }
 
   function createTodo(name, description, date, priority, projectBelongTo) {
