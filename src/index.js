@@ -32,6 +32,8 @@ export const inputArr = [nameInput, noteInput, dateInput, priorityInput];
 const todoContainer = document.querySelector(`.todoContainer`);
 
 const inboxBtn = document.querySelector(`.inbox`);
+const todayBtn = document.querySelector(`.today`);
+const upcomingBtn = document.querySelector(`.upcoming`);
 
 ////////////////////////////
 const eventController = (function () {
@@ -68,6 +70,7 @@ const eventController = (function () {
     if (e.target.className === `project`) {
       project = e.target.childNodes[3].textContent;
       renderProject.renderTodoList(project);
+      addTodoBtn.classList.remove(`hidden`);
     } else if (e.target.className === `project-delete`) {
       project = e.target.parentNode.querySelector(`.project-name`).textContent;
 
@@ -75,7 +78,7 @@ const eventController = (function () {
       renderProject.renderProjectList();
     } else {
       project = e.target.parentNode.querySelector(`.project-name`).textContent;
-
+      addTodoBtn.classList.remove(`hidden`);
       renderProject.renderTodoList(project);
     }
   });
@@ -182,6 +185,24 @@ const eventController = (function () {
   });
 
   inboxBtn.addEventListener(`click`, function () {
+    dataProcessor.sortTodoByDate(`Inbox`);
+    addTodoBtn.classList.remove(`hidden`);
     renderProject.renderTodoList(`Inbox`);
+  });
+
+  todayBtn.addEventListener(`click`, function () {
+    dataProcessor.updateTodayProject();
+    dataProcessor.updateUpcomingProject();
+    dataProcessor.sortTodoByDate(`Today`);
+    renderProject.renderTodoList(`Today`);
+    addTodoBtn.classList.add(`hidden`);
+  });
+
+  upcomingBtn.addEventListener(`click`, function () {
+    dataProcessor.updateTodayProject();
+    dataProcessor.updateUpcomingProject();
+    dataProcessor.sortTodoByDate(`Upcoming`);
+    renderProject.renderTodoList(`Upcoming`);
+    addTodoBtn.classList.add(`hidden`);
   });
 })();

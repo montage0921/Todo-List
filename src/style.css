@@ -175,6 +175,10 @@ header {
   display: none;
 }
 
+#add-todo.hidden {
+  display: none;
+}
+
 .todo-form.hidden {
   display: none;
 }
@@ -211,6 +215,8 @@ header {
 
 .whichProjectItis {
   font-size: 1.5rem;
+  margin-top: 1rem;
+  border-bottom: 1px solid lightgray;
 }
 
 .todo-form,

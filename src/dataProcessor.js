@@ -126,6 +126,16 @@ export const dataProcessor = (function () {
     });
   }
 
+  function sortTodoByDate(project) {
+    projectObj[project].sort((a, b) => {
+      const isoA = new Date(a.date.replace(/-/g, "/"));
+      const isoB = new Date(b.date.replace(/-/g, "/"));
+      if (isoA < isoB) return -1;
+      else if (isoA > isoB) return 1;
+      else if (isoA === isoB) return -1;
+    });
+  }
+
   return {
     addProject,
     getPropertyName,
@@ -138,5 +148,6 @@ export const dataProcessor = (function () {
     updateTodo,
     updateTodayProject,
     updateUpcomingProject,
+    sortTodoByDate,
   };
 })();
