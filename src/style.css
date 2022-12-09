@@ -231,7 +231,7 @@ header {
 
 .todo {
   width: 99%;
-  height: 40px;
+  height: auto;
   display: grid;
   grid-template-columns: auto 1fr 1.5fr 0.5fr 1fr 1fr auto auto;
   border-bottom: 1px solid lightgray;
@@ -261,6 +261,12 @@ header {
   align-self: center;
   justify-self: center;
   cursor: pointer;
+}
+
+.todo .title {
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
 }
 
 .priority.Important {

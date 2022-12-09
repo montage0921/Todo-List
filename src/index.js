@@ -31,6 +31,8 @@ export const inputArr = [nameInput, noteInput, dateInput, priorityInput];
 
 const todoContainer = document.querySelector(`.todoContainer`);
 
+const inboxBtn = document.querySelector(`.inbox`);
+
 ////////////////////////////
 const eventController = (function () {
   /////////Project//////////////
@@ -177,5 +179,9 @@ const eventController = (function () {
 
       renderProject.renderTodoList(project);
     }
+  });
+
+  inboxBtn.addEventListener(`click`, function () {
+    renderProject.renderTodoList(`Inbox`);
   });
 })();

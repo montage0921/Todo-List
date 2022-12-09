@@ -143,7 +143,7 @@ export const renderProject = (function () {
      <form class="editTodo-form" id=${todo[0].id}>
           <div class="inputDiv">
             <label for="update-todo-name">Name: </label>
-            <input id="update-todo-name" type="text" required value="${
+            <input id="update-todo-name" type="text" required maxlength="23" value="${
               todo[0].name
             }" />
             <div class="errorMsg-Todo"></div>
